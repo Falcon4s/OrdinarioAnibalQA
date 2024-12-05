@@ -27,7 +27,7 @@ jobs:
       # Then run your tests!
       - run:
           name: Unit Tests
-          command: mvn -Dtest=UserServiceUnitTest -Dsurefire.printSummary=true test
+          command: mvn -Dtest=UnitTestUserService -Dsurefire.printSummary=true test
 
 
 # Orchestrate jobs using workflows
