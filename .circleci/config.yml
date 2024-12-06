@@ -56,6 +56,10 @@ jobs:
           name: Functional Tests
           command: mvn -Dtest=CRUDSeleniumTest -Dsurefire.printSummary=true test
 
+      - store_artifacts:
+          path: src/screenshots
+          destination: artifact-file
+
   deployment:
     docker:
       - image: cimg/openjdk:17.0
