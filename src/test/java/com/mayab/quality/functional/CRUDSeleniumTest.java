@@ -282,7 +282,6 @@ public class CRUDSeleniumTest {
         }
         
         return usersToFind.isEmpty();
-        takeScreenshot("findall");
 
     }
     public void takeScreenshot(String fileName) throws IOException {

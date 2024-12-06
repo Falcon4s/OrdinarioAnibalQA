@@ -58,7 +58,7 @@ jobs:
       
       - store_artifacts:
           path: src/screenshots
-          destination: artifact-file
+      
 
   deployment:
     docker:
