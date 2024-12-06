@@ -43,7 +43,7 @@ class UnitTestUserService {
                     return user;
                 }
             }
-            return true;
+            return user;
         }
 
         @Override
