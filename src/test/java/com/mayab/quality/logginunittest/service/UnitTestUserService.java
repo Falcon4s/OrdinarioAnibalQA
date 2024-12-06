@@ -211,7 +211,7 @@ class UnitTestUserService {
 
         User savedUser = db.get(id);
         assertThat(savedUser.getName(), is("New Name"));
-        assertThat(savedUser.getEmail(), is("oldemail@example.com"));
+        assertThat(savedUser.getEmail(), is("newgbhbynemail@example.com"));
     }
 
     @Test
