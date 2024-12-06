@@ -26,6 +26,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
+import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
+
 public class CRUDSeleniumTest {
 
     private WebDriver driver;
@@ -64,7 +69,8 @@ public class CRUDSeleniumTest {
         pause(1000);
         
         String isUserCreated = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/table/tbody/tr[1]/td[1]")).getText();
-        assertEquals(isUserCreated, "Anibal Falcon");     
+        assertEquals(isUserCreated, "Anibal Falcon");    
+	takeScreenshot("screen");
     }
     
     @Test
@@ -87,6 +93,7 @@ public class CRUDSeleniumTest {
         driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/button")).click(); 
         driver.findElement(By.xpath("/html/body/div[3]/div/i")).click();
         pause(1000);
+	takeScreenshot("screen");
         
 
     }
@@ -122,6 +129,7 @@ public class CRUDSeleniumTest {
 
         String errorMessage = driver.findElement(By.xpath("//p[text()='That email is already taken.']")).getText();
         assertEquals(errorMessage, "That email is already taken.");
+	takeScreenshot("screen");
     }
 
 //
@@ -142,6 +150,7 @@ public class CRUDSeleniumTest {
 
         String ageCheck = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/table/tbody/tr[1]/td[3]")).getText();
         assertEquals(ageCheck, "25");
+	takeScreenshot("screen");
     }
 
 
@@ -156,6 +165,7 @@ public class CRUDSeleniumTest {
         String userErased = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/table/tbody/tr[1]/td[2]")).getText();
         String userExpected = "AnibalFalcon@usuario.com";
         assertNotEquals(userErased, userExpected);
+	takeScreenshot("screen");
 
     }
     
@@ -179,6 +189,7 @@ public class CRUDSeleniumTest {
         driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/button")).click(); 
         driver.findElement(By.xpath("/html/body/div[3]/div/i")).click();
         pause(1000);
+	takeScreenshot("screen");
 
     }
     
@@ -202,6 +213,7 @@ public class CRUDSeleniumTest {
         driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/button")).click(); 
         driver.findElement(By.xpath("/html/body/div[3]/div/i")).click();
         pause(1000);
+	takeScreenshot("screen");
 
     }
     
@@ -229,6 +241,7 @@ public class CRUDSeleniumTest {
         
         assertThat(isRecordFound, is(true));
         pause(1000);
+	takeScreenshot("screen");
         
     }
     
@@ -263,6 +276,7 @@ public class CRUDSeleniumTest {
         }
         
         return usersToFind.isEmpty();
+	takeScreenshot("screen");
     }
 
     private void pause(long mils) {
@@ -281,6 +295,16 @@ public class CRUDSeleniumTest {
             org.junit.jupiter.api.Assertions.fail(verificationErrorString);
         }
     }
+
+  	public static void takeScreenshot(String fileName)
+  	throws IOException
+  	{
+	  //Creating instance of file
+	File file = ((TakesScreenshot)driver)
+			  .getScreenshotAs(OutputType.FILE);
+			  
+	FileUtils.copyFile(file, new File("src/screenshot/" + fileName + ".jpg"));}
+  
 
     private boolean isElementPresent(By by) {
         try {
